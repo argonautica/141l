@@ -1,4 +1,4 @@
-module reg_file #(parameter W=8, D=4(
+module reg_file #(parameter W=8, D=4) (
     input clk, 
     write_enabled,
     input reg_to_reg,

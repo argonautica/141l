@@ -31,10 +31,12 @@ logic [W-1:0] core[2**A];
 always_comb
   if(read_enabled)
     data_out = core[addr];
+  else
+    data_out = 0;
   
 // writes are sequential
 
-always_ff @ (posedge Clk)
+always_ff @ (posedge clk)
   if(reset) begin
     // todo: initialize memory
   end 

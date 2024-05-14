@@ -1,7 +1,7 @@
 module top_level
 (
     input clk, start,
-    output logic done;
+    output logic done
 );
 
 
@@ -32,7 +32,7 @@ logic [8:0] inst;
 
 logic[PC_WIDTH-1:0] pc;
 logic[7:0] branch_reg;
-logic[10:0] branch_lut;
+logic[PC_WIDTH:0] branch_pos;
 
 
 wire[7:0] reg_out, acc_out;
@@ -40,12 +40,12 @@ wire[7:0] reg_write_data;
 
 logic z, c, n, v;
 
-Control control(
+control control(
+    .inst(inst),
     .z(z),
     .c(c),
     .n(n),
     .v(v),
-    .inst(inst),
     .memory_read_en(memory_read_enabled),
     .memory_write_en(memory_write_enabled),
     .reg_write_en(register_write_enabled),
@@ -79,14 +79,14 @@ data_mem data_mem(
     .clk(clk),
     .data_to_write(acc_out),
     .addr(reg_out),
-    .read_en(memory_read_enabled),
-    .write_en(memory_write_enabled),
+    .read_enabled(memory_read_enabled),
+    .write_enabled(memory_write_enabled),
     .reset(0),
     .data_out(reg_write_data)
 );
 
 alu alu(
-    .type(inst[8]),
+    .optype(inst[8]),
     .OP(inst[7:4]),
     .acc_in(acc_out),
     .reg_in(reg_out),
@@ -109,6 +109,16 @@ branch_lut branch_lut(
     .branch_pos(branch_pos)
 );
 
+inst_fetch inst_fetch(
+    .reset(0),
+    .start(start),
+    .clk(clk),
+    .branch_en(branch_enabled),
+    .target(branch_pos),
+    .pc(pc)
+);
+
+
 
 
 always_ff @(posedge clk) begin
@@ -119,3 +129,5 @@ always_ff @(posedge clk) begin
     end
 
 end
+
+endmodule
