@@ -20,7 +20,7 @@ module control (
 
 always_comb begin
     
-    reg_write_en = 1;
+    reg_write_en = 0;
     reg_write_number = 0; // accumulator
     reg_to_reg = 0;
     branch_en = 0;

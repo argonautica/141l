@@ -1,3 +1,5 @@
+# LUT Operations
+
 | Instruction | Type Bit | Opcode |
 |-------------|----------|--------|
 | BLT         | 1        | 000    |
@@ -5,6 +7,8 @@
 | BEQ         | 1        | 010    |
 | BRANCH      | 1        | 011    |
 | ACC         | 1        | 100    |
+
+# NON-LUT Operations
 
 | Instruction | Type Bit | Opcode | Reg     |
 |-------------|----------|--------|---------|
