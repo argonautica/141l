@@ -6,3 +6,5 @@ module mux_2x1 #(parameter W=8) (
 );
 
 assign out = select ? in1 : in0;
+
+endmodule
