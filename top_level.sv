@@ -67,7 +67,6 @@ reg_file reg_file(
     .clk(clk),
     .write_enabled(register_write_enabled),
     .reg_to_reg(reg_to_reg),
-    .from_lut(fetch_acc_enabled),
     .reg_write_number(reg_index),
     .reg_from_number(source_reg_index),
     .reg_write_data(reg_write_data_real), // fix this
@@ -124,7 +123,7 @@ inst_fetch inst_fetch(
 );
 
 mux_2x1 reg_write_selector(
-    .sel(fetch_acc_enabled),
+    .select(fetch_acc_enabled),
     .in0(lut_fetch_data),
     .in1(reg_write_data),
     .out(reg_write_data_real)
