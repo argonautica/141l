@@ -10,6 +10,10 @@ module instr_ROM #(parameter A=10, W=9) (
 // need $readmemh or $readmemb to initialize all of the elements
 // declare ROM array
   logic[W-1:0] inst_rom[2**(A)];
+
+  initial begin
+    $readmemh("program1.txt", inst_rom);
+  end
     
 // read from it
   always_comb instr_out = inst_rom[instr_address];
