@@ -26,6 +26,13 @@ always_comb begin
       4'b0110: OUT = acc_in & reg_in;
       4'b0111: OUT = acc_in | reg_in;
       4'b1000: OUT = acc_in ^ reg_in;
+      4'b1001: 
+        // popcnt
+        for (int i = 0; i < 8; i = i + 1) begin
+          if (reg_in[i]) begin
+            OUT = OUT + 1;
+          end
+      end
       4'b1010: begin
         if (acc_in > reg_in) begin
           z = 0;
