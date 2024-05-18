@@ -86,9 +86,7 @@ always_comb begin
                 // STORE
                 memory_write_en = 1;
                 reg_from_number = inst[3:0];
-
             end
-
             4'b1100: begin
                 // acc to reg
                 reg_write_en = 1;
