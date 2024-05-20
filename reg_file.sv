@@ -19,6 +19,7 @@ always_ff @(posedge clk) begin
         registers[reg_write_number] <= registers[reg_from_number];
     end else
     if (write_enabled) begin
+        $display("Writing to register %d", reg_write_number);
         registers[reg_write_number] <= reg_write_data;
     end
 end

@@ -4,10 +4,10 @@ module alu(
   input [7:0] acc_in,
   input [7:0] reg_in,
   output logic [7:0] OUT,
-  output z, // zero flag
-  output c, // carry flag
-  output n, // negative flag
-  output v // overflow flag
+  output logic z, // zero flag
+  output logic c, // carry flag
+  output logic n, // negative flag
+  output logic v // overflow flag
 );
 
 always_comb begin

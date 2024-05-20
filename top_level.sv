@@ -57,7 +57,7 @@ control control(
     .reg_to_reg(reg_to_reg),
     .branch_en(branch_enabled),
     .fetch_acc_en(fetch_acc_enabled),
-    .reg_from_number(source_reg_index),
+    .reg_from_number(source_reg_index)
     // .write_value(reg_write_data)
 );
 
@@ -124,8 +124,8 @@ inst_fetch inst_fetch(
 
 mux_2x1 reg_write_selector(
     .select(fetch_acc_enabled),
-    .in0(lut_fetch_data),
-    .in1(reg_write_data),
+    .in0(reg_write_data),
+    .in1(lut_fetch_data),
     .out(reg_write_data_real)
 );
 

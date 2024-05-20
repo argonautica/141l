@@ -1,0 +1,4 @@
+ACC 1
+BCH 0
+ACC 2
+AR 1

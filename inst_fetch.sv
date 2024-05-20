@@ -1,4 +1,4 @@
-module inst_fetch #(parameter PC_WIDTH=11)(	  // PC width -- up to 32, if you like
+module inst_fetch #(parameter PC_WIDTH=12)(	  // PC width -- up to 32, if you like
   input                reset,		  // reset, init, etc. -- force PC to 0 
                        start,		  // begin next program in series (request issued by test bench)
                        clk,			  // PC can change on pos. edges only

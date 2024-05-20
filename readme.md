@@ -99,7 +99,7 @@ ADD
 | BLT         | 1        | 000    | BLT 5 ⇔ 1_000_00101 | Branch if less than                   |
 | BGT         | 1        | 001    | BGT 5 ⇔ 1_001_00101 | Branch if greater than                |
 | BEQ         | 1        | 010    | BEQ 5 ⇔ 1_010_00101 | Branch if equal                       |
-| BRANCH      | 1        | 011    | BRANCH 5 ⇔ 1_011_00101 | Unconditional branch                  |
+| BCH         | 1        | 011    | BRANCH 5 ⇔ 1_011_00101 | Unconditional branch                  |
 | ACC         | 1        | 100    | ACC 5 ⇔ 1_100_00101 | Set Acc to  |
 
 
@@ -118,5 +118,5 @@ ADD
 | POPCNT      | 0        | 1001   | POPCNT ⇔ 0_1001_0001 | Population count (count of set bits) with value in accumulator |
 | CMP         | 0        | 1010   | CMP ⇔ 0_1010_0001    | Compare value in accumulator with register |
 | MOV         | 0        | 1011   | MOV ⇔ 0_1011_0001    | Move value in accumulator to register   |
-| ACC TO REG  | 0        | 1100   | ACC TO REG ⇔ 0_1100_0001 | Move accumulator value to register |
-| REG TO ACC  | 0        | 1101   | REG TO ACC ⇔ 0_1101_0001 | Move register value to accumulator    |
+| AR          | 0        | 1100   | ACC TO REG ⇔ 0_1100_0001 | Move accumulator value to register |
+| RA          | 0        | 1101   | REG TO ACC ⇔ 0_1101_0001 | Move register value to accumulator    |

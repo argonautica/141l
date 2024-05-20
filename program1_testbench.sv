@@ -11,7 +11,7 @@ module test_bench;
   logic[ 4:0] Max1, Max2;		// addresses of pair w/ largest Hamming distance
   logic[15:0] Tmp[32];		    // cache of 16-bit values assembled from data_mem
 
-  DUT D1(.clk  (clk  ),	        // your design goes here
+  top_level D1(.clk  (clk  ),	        // your design goes here
 		 .start(start),
 		 .done (done )); 
 
@@ -29,14 +29,14 @@ module test_bench;
 	Min = 'd16;						         // start test bench Min at max value
 	Max = 'd0;						         // start test bench Max at min value
     for(int i=0; i<32; i++) begin
-      {D1.dm.core[2*i],D1.dm.core[2*i+1]} = $random;  
-      Tmp[i] = {D1.dm.core[2*i],D1.dm.core[2*i+1]};
+      {D1.data_mem.core[2*i],D1.data_mem.core[2*i+1]} = $random;  
+      Tmp[i] = {D1.data_mem.core[2*i],D1.data_mem.core[2*i+1]};
       $display("%d:  %b",i,Tmp[i]);
 	end
 // TODO: delete DUT data memory preloads beyond [63] (next 3 lines of code)
-    D1.dm.core[64] = 'd16;		             // preset DUT final Min to max possible
+    D1.data_mem.core[64] = 'd16;		             // preset DUT final Min to max possible
     for(int r=65; r<256; r++)
-	  D1.dm.core[r] = 'd0;		             // preset DUT final Max to min possible 
+	  D1.data_mem.core[r] = 'd0;		             // preset DUT final Max to min possible 
 // 	compute correct answers
     for(int j=0; j<32; j++) begin
       for(int k=j+1; k<32; k++) begin
@@ -57,14 +57,14 @@ module test_bench;
     #200ns wait (done);						 // avoid false done signals on startup
 
 // check results in data_mem[64] and [65] (Minimum and Maximum distances, respectively)
-    if(Min == D1.dm.core[64]) $display("good Min = %d",Min);
+    if(Min == D1.data_mem.core[64]) $display("good Min = %d",Min);
 	else                      $display("fail Min = %d",Min);
                               $display("Min addr = %d, %d",Min1, Min2);
-							  $display("Min valu = %b, %b",Tmp[Min1],Tmp[Min2]);//{D1.dm.core[2*Min1],D1.dm.core[2*Min1+1]},{D1.dm.core[2*Min2],D1.dm.core[2*Min2+1]});
-	if(Max == D1.dm.core[65]) $display("good Max = %d",Max);
+							  $display("Min valu = %b, %b",Tmp[Min1],Tmp[Min2]);//{D1.data_mem.core[2*Min1],D1.data_mem.core[2*Min1+1]},{D1.data_mem.core[2*Min2],D1.data_mem.core[2*Min2+1]});
+	if(Max == D1.data_mem.core[65]) $display("good Max = %d",Max);
 	else                      $display("MAD  Max = %d",Max);
 	                          $display("Max pair = %d, %d",Max1, Max2);
-							  $display("Max valu = %b, %b",Tmp[Max1],Tmp[Max2]);//{D1.dm.core[2*Max1],D1.dm.core[2*Max1+1]},{D1.dm.core[2*Max2],D1.dm.core[2*Max2+1]});
+							  $display("Max valu = %b, %b",Tmp[Max1],Tmp[Max2]);//{D1.data_mem.core[2*Max1],D1.data_mem.core[2*Max1+1]},{D1.data_mem.core[2*Max2],D1.data_mem.core[2*Max2+1]});
     #200ns start = 'b1;
 // to do: load operands for program 2 into data memory (reuse program 1 operands is fine here)
 	#200ns start = 'b0;
