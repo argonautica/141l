@@ -108,6 +108,7 @@ always_comb begin
                 reg_write_en = 1;
                 memory_write_en = 0;
                 reg_write_number = 0;
+                reg_from_number = inst[3:0];
             end
         endcase
     end

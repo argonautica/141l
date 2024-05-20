@@ -1,0 +1,8 @@
+ACC 3
+AR 1
+ACC 2
+CMP 1
+BGT X
+BEQ Y
+//X
+SUB X

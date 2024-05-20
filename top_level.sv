@@ -36,7 +36,8 @@ logic[PC_WIDTH:0] branch_pos;
 
 
 wire[7:0] reg_out, acc_out;
-wire[7:0] reg_write_data;
+wire[7:0] reg_write_data_from_alu;
+wire[7:0] reg_write_data_from_mem;
 wire[7:0] reg_write_data_real;
 
 wire[7:0] lut_fetch_data;
@@ -58,7 +59,6 @@ control control(
     .branch_en(branch_enabled),
     .fetch_acc_en(fetch_acc_enabled),
     .reg_from_number(source_reg_index)
-    // .write_value(reg_write_data)
 );
 
 // Register File
@@ -86,7 +86,7 @@ data_mem data_mem(
     .read_enabled(memory_read_enabled),
     .write_enabled(memory_write_enabled),
     .reset(0),
-    .data_out(reg_write_data)
+    .data_out(reg_write_data_from_mem)
 );
 
 alu alu(
@@ -94,7 +94,7 @@ alu alu(
     .OP(inst[7:4]),
     .acc_in(acc_out),
     .reg_in(reg_out),
-    .OUT(reg_write_data),
+    .OUT(reg_write_data_from_alu),
     .z(z),
     .c(c),
     .n(n),
@@ -122,12 +122,16 @@ inst_fetch inst_fetch(
     .pc(pc)
 );
 
-mux_2x1 reg_write_selector(
+mux_3x1 reg_write_selector(
     .select(fetch_acc_enabled),
-    .in0(reg_write_data),
+    .select2(memory_read_enabled),
+    .in0(reg_write_data_from_alu),
     .in1(lut_fetch_data),
+    .in2(reg_write_data_from_mem),
     .out(reg_write_data_real)
 );
+
+
 
 
 
@@ -136,6 +140,10 @@ always_ff @(posedge clk) begin
     if (start ) begin
 
     end else begin
+		if (pc > 3) begin
+			$display("here");
+			done = 1;
+		end
         
     end
 

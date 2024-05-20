@@ -7,7 +7,7 @@ module branch_lut (
 always_comb begin
     if (branch_lut_en) begin
         case (key)
-            5'b00000: branch_pos = 12'b000000000100; // 4
+            5'b00000: branch_pos = 12'd27; // 3*9
             default: branch_pos = 12'b0;
         endcase
     end
