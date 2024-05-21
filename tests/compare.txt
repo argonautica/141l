@@ -1,0 +1,7 @@
+ACC 1
+AR 1
+ACC 2
+CMP 1
+BLT 3
+AR 10
+AR 3

@@ -1,0 +1,4 @@
+ACC 3
+AR 3
+ADD 3
+STORE 3

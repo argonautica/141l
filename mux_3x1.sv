@@ -1,6 +1,6 @@
-module mux_2x1 #(parameter W=8) (
+module mux_3x1 #(parameter W=8) (
     input select,
-    input select2
+    input select2,
     input [W-1:0] in0,
     input [W-1:0] in1,
     input [W-1:0] in2,

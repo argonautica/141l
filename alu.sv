@@ -10,12 +10,12 @@ module alu(
   output logic v // overflow flag
 );
 
-always_comb begin
+always_latch begin
   OUT = 8'b0;
-  z = 0;
-  c = 0;
-  n = 0;
-  v = 0;
+//  z = 0;
+//  c = 0;
+//  n = 0;
+//  v = 0;
   
   if (optype == 1'b0) begin
     case (OP)
@@ -34,6 +34,7 @@ always_comb begin
           end
       end
       4'b1010: begin
+			$display("acc, %d, reg: %d", acc_in, reg_in);
         if (acc_in > reg_in) begin
           z = 0;
           n = 0;

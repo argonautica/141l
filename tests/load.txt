@@ -1,0 +1,4 @@
+ACC 3
+AR 1
+LOAD 1
+AR 3

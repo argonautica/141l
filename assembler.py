@@ -1,5 +1,5 @@
 import re
-
+import argparse
 # Define the opcode dictionary
 OPCODES = {
     'BLT':  ('1', '000'),
@@ -65,5 +65,16 @@ def assemble_file(input_file, output_file):
         for code in machine_codes:
             f.write(code + '\n')
 
-# Example usage
-assemble_file('branch_test_in.txt', 'branch_test_out.txt')
+def main():
+    parser = argparse.ArgumentParser(description="Assemble a text file of instructions into machine code.")
+    parser.add_argument("filename", help="The base name of the input file (without _in.txt or _out.txt).")
+    
+    args = parser.parse_args()
+    input_file = f"{args.filename}.txt"
+    output_file = f"{args.filename}_out.txt"
+    
+    assemble_file(input_file, output_file)
+    print(f"Assembly complete. Output written to {output_file}")
+
+if __name__ == "__main__":
+    main()
