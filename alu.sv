@@ -44,7 +44,7 @@ always_latch begin
           
       end
       4'b1010: begin
-			$display("acc, %d, reg: %d", acc_in, reg_in);
+			// $display("acc, %d, reg: %d", acc_in, reg_in);
         if (acc_in > reg_in) begin
           z = 0;
           n = 0;
