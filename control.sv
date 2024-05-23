@@ -89,7 +89,6 @@ always_comb begin
                 reg_from_number = inst[3:0];
             end
             4'b1100: begin
-                $display("fetch acc enabled: %b", fetch_acc_en);
                 // acc to reg
                 reg_write_en = 1;
                 reg_to_reg = 1;

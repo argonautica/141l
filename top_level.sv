@@ -137,7 +137,7 @@ mux_3x1 reg_write_selector(
 
 
 always_ff @(posedge clk) begin
-     $display("inst: %b, pc: $d", inst, pc);
+    //  $display("inst: %b, pc: $d", inst, pc);
     if (start ) begin
 
     end else begin

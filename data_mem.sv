@@ -42,5 +42,8 @@ always_ff @ (posedge clk)
     // todo: initialize memory
   end 
   else if(write_enabled)
-    core[addr] <= data_to_write;
+    begin
+      // $display("Writing %d to memory at address %d", data_to_write, addr);
+      core[addr] <= data_to_write;
+    end
 endmodule

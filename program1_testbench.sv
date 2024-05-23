@@ -55,7 +55,7 @@ module test_bench;
     end   
 	#200ns start = 'b0; 
     #200ns wait (done);						 // avoid false done signals on startup
-
+  $display("Min = %d, Max = %d",D1.data_mem.core[64],D1.data_mem.core[65]);
 // check results in data_mem[64] and [65] (Minimum and Maximum distances, respectively)
     if(Min == D1.data_mem.core[64]) $display("good Min = %d",Min);
 	else                      $display("fail Min = %d",Min);
