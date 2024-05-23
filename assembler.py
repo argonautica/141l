@@ -1,5 +1,6 @@
 import re
 import argparse
+
 # Define the opcode dictionary
 OPCODES = {
     'BLT':  ('1', '000'),
@@ -25,7 +26,7 @@ OPCODES = {
 
 def assemble_line(line):
     # Remove comments and extra spaces, make lowercase
-    line = re.sub(r'#.*', '', line).strip().lower()
+    line = re.sub(r'//.*', '', line).strip().lower()
     if not line:
         return None
     

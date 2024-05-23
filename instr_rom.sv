@@ -12,7 +12,7 @@ module instr_ROM #(parameter A=10, W=9) (
   logic[W-1:0] inst_rom[2**(A)];
 
   initial begin
-    $readmemb("L:/Desktop/141l-main/141l-main/branch_test_out.txt", inst_rom);
+    $readmemb("L:/Desktop/141l-main/141l-main/programs/p1_loop_out.txt", inst_rom);
   end
     
 // read from it

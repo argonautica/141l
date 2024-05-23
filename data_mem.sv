@@ -29,9 +29,10 @@ logic [W-1:0] core[2**A];
 
 // reads are combinational
 always_comb
-  if(read_enabled)
+  if(read_enabled) begin
+    $display("Reading from memory at address %d", addr);
     data_out = core[addr];
-  else
+  end else
     data_out = 0;
   
 // writes are sequential

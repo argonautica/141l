@@ -1,0 +1,6 @@
+PSEUDO
+
+Loop I from 0 to 61 by 2s
+    Loop J from I + 2 to 63 by 2s
+        LOAD i1, i2, j1, j2
+        
