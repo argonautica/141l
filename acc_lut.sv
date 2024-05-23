@@ -11,6 +11,8 @@ always_comb begin
             5'b00001: value = 8'b00111111; // 63
             5'b00010: value = 8'b00000000; // 0
             5'b00011: value = 8'b00000001; // 1
+            5'b00100: value = 8'd64; // 64
+            5'b00101: value = 8'd65; // 65
             
             default: value = 8'b0;
         endcase

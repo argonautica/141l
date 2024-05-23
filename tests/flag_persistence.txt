@@ -1,0 +1,7 @@
+ACC 2
+AR 2
+CMP 2
+BGT 0
+BEQ 1
+AR 3
+AR 4

@@ -19,7 +19,7 @@ module control (
 );
 
 always_comb begin
-    $display("inst: %b", inst);
+   
     
     reg_write_en = 0;
     reg_write_number = 0; // accumulator

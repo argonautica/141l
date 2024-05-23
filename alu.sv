@@ -11,7 +11,6 @@ module alu(
 );
 
 always_latch begin
-  OUT = 8'b0;
 //  z = 0;
 //  c = 0;
 //  n = 0;
@@ -46,7 +45,6 @@ always_latch begin
           n = 0;
         end
       end
-      default: OUT = 8'b0;
     endcase
   end
 end

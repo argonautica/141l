@@ -137,10 +137,11 @@ mux_3x1 reg_write_selector(
 
 
 always_ff @(posedge clk) begin
+     $display("inst: %b, pc: $d", inst, pc);
     if (start ) begin
 
     end else begin
-		if (pc > 3) begin
+		if (pc > 77) begin
 			$display("here");
 			done = 1;
 		end
