@@ -16,9 +16,11 @@ assign reg_out = registers[reg_from_number];
 
 always_ff @(posedge clk) begin
     if (reg_to_reg) begin
+        $display("Writing %d to register %d", registers[reg_from_number], reg_write_number);
         registers[reg_write_number] <= registers[reg_from_number];
     end else
     if (write_enabled) begin
+        $display("Writing %d to register %d", reg_write_data, reg_write_number);
         registers[reg_write_number] <= reg_write_data;
     end
 end

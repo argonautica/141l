@@ -37,16 +37,16 @@ ADD 14
 AR 2
 LOAD 2
 AR 6 // CALC BELOW
-RA 3
-XOR 5
-AR 3
-RA 4
-XOR 6
-AR 4
-POPCNT 3
-AR 3
-POPCNT 4
-ADD 3
+RA 3 // get 3
+XOR 5 // xor with 5
+AR 3 // write out to 3
+RA 4 // get 4
+XOR 6 // xor with 6
+AR 4 // write to 4
+POPCNT 3 // get set bits of 3
+AR 11 // write to 11
+POPCNT 4 // get set bits of 4
+ADD 11 // add set bits of 11 to 4
 CMP 10 // SET MIN
 BGT 6
 AR 10

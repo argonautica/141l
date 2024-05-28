@@ -11,18 +11,19 @@ module alu(
 );
 
 integer i;
-always_latch begin
+always_comb begin
 //  z = 0;
 //  c = 0;
 //  n = 0;
 //  v = 0;
+  OUT = 0;
   
   if (optype == 1'b0) begin
     case (OP)
       4'b0010:  begin
         {c, OUT} = acc_in + reg_in;
         if (OUT == 21)
-          $display("debugadlskfjalksdjflkasjdflkasjflkjasdkfjsakjfkds");
+          $display("debugadlskfjalksdjflkasjdflkasjflkjasdkfjsakjfkds, acc: %d, reg: %d, out: %d", acc_in, reg_in, OUT);
       end
       4'b0011: {c, OUT} = acc_in - reg_in;
       4'b0100: OUT = acc_in << reg_in;
@@ -43,7 +44,15 @@ always_latch begin
           end
           
       end
-      4'b1010: begin
+
+    endcase
+    $display("with the operation %d, the result is %d", OP, OUT);
+  end
+end
+
+always_latch begin
+  if (OP == 4'b1010)
+         begin
 			// $display("acc, %d, reg: %d", acc_in, reg_in);
         if (acc_in > reg_in) begin
           z = 0;
@@ -56,7 +65,8 @@ always_latch begin
           n = 0;
         end
       end
-    endcase
-  end
 end
+
+
+
 endmodule
