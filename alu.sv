@@ -3,6 +3,7 @@ module alu(
   input [3:0] OP,
   input [7:0] acc_in,
   input [7:0] reg_in,
+  input c_in,
   output logic [7:0] OUT,
   output logic z, // zero flag
   output logic c, // carry flag
@@ -21,7 +22,7 @@ always_comb begin
   if (optype == 1'b0) begin
     case (OP)
       4'b0010:  begin
-        {c, OUT} = acc_in + reg_in;
+        {c, OUT} = acc_in + reg_in + c_in;
         if (OUT == 21)
           $display("debugadlskfjalksdjflkasjdflkasjflkjasdkfjsakjfkds, acc: %d, reg: %d, out: %d", acc_in, reg_in, OUT);
       end

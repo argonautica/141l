@@ -43,7 +43,7 @@ wire[7:0] reg_write_data_real;
 wire[7:0] lut_fetch_data;
 
 
-logic z, c, n, v;
+logic z, c, n, v, c_in;
 
 control control(
     .inst(inst),
@@ -94,6 +94,7 @@ alu alu(
     .OP(inst[7:4]),
     .acc_in(acc_out),
     .reg_in(reg_out),
+    .c_in(c_in),
     .OUT(reg_write_data_from_alu),
     .z(z),
     .c(c),
@@ -137,6 +138,8 @@ mux_3x1 reg_write_selector(
 
 
 always_ff @(posedge clk) begin
+    c <= c_in;
+
 		
  $display("inst: %b, pc: $d", inst, pc + 1);
     if (start ) begin
