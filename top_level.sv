@@ -143,6 +143,11 @@ always_ff @(posedge clk) begin
 		
  $display("inst: %b, pc: $d", inst, pc + 1);
     if (start ) begin
+        c = 0;
+        z = 0;
+        n = 0;
+        v = 0;
+        c_in = 0;
 
     end else begin
 		if (pc > 77) begin

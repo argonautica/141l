@@ -12,18 +12,18 @@ module alu(
 );
 
 integer i;
-always_comb begin
+always_latch begin
 //  z = 0;
 //  c = 0;
 //  n = 0;
 //  v = 0;
   OUT = 0;
-  
+  c = c_in;
   if (optype == 1'b0) begin
     case (OP)
       4'b0010:  begin
         {c, OUT} = acc_in + reg_in + c_in;
-        if (OUT == 21)
+        if (OUT)
           $display("debugadlskfjalksdjflkasjdflkasjflkjasdkfjsakjfkds, acc: %d, reg: %d, out: %d", acc_in, reg_in, OUT);
       end
       4'b0011: {c, OUT} = acc_in - reg_in;
