@@ -22,6 +22,6 @@
 | XOR         | 0        | 1000   | XOR ⇔ 0_1000_0001    | Bitwise XOR with value in accumulator   |
 | POPCNT      | 0        | 1001   | POPCNT ⇔ 0_1001_0001 | Population count (count of set bits) with value in accumulator |
 | CMP         | 0        | 1010   | CMP ⇔ 0_1010_0001    | Compare value in accumulator with register |
-| MOV         | 0        | 1011   | MOV ⇔ 0_1011_0001    | Move value in accumulator to register   |
+| CF         | 0        | 1011   | CF ⇔ 0_1011_0001    | CLEAR FLAGS   |
 | AR          | 0        | 1100   | ACC TO REG ⇔ 0_1100_0001 | Move accumulator value to register |
 | RA          | 0        | 1101   | REG TO ACC ⇔ 0_1101_0001 | Move register value to accumulator    |

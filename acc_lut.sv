@@ -14,6 +14,7 @@ always_comb begin
             5'b00100: value = 8'd64; // 64
             5'b00101: value = 8'd65; // 65
             5'b00110: value = 8'd66; // 66
+            5'b00111: value = 8'b10000000; // MSB SET
             
             default: value = 8'b0;
         endcase

@@ -5,6 +5,7 @@
 //
 module instr_ROM #(parameter A=10, W=9) (
   input       [A-1:0] instr_address,
+  input logic[1:0] program_num,
   output logic[W-1:0] instr_out);
 	 
 // need $readmemh or $readmemb to initialize all of the elements
@@ -12,7 +13,8 @@ module instr_ROM #(parameter A=10, W=9) (
   logic[W-1:0] inst_rom[2**(A)];
 
   initial begin
-    $readmemb("L:/Desktop/141l-main/141l-main/programs/p1_full_out.txt", inst_rom);
+//      $display("read from program %d", program_num);
+		$readmemb("L:/Desktop/141l-main/141l-main/programs/p2_full_out.txt", inst_rom);
   end
     
 // read from it

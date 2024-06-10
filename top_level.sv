@@ -1,6 +1,6 @@
 module top_level
 (
-    input clk, start,
+    input clk, start, input logic[1:0] program_num,
     output logic done
 );
 
@@ -65,6 +65,7 @@ control control(
 
 reg_file reg_file(
     .clk(clk),
+	 .pc(pc),
     .write_enabled(register_write_enabled),
     .reg_to_reg(reg_to_reg),
     .reg_write_number(reg_index),
@@ -76,6 +77,7 @@ reg_file reg_file(
 
 instr_ROM instr_rom(
     .instr_address(pc),
+    .program_num(program_num),
     .instr_out(inst)
 );
 
@@ -91,6 +93,7 @@ data_mem data_mem(
 
 alu alu(
     .optype(inst[8]),
+	 .pc(pc),
     .OP(inst[7:4]),
     .acc_in(acc_out),
     .reg_in(reg_out),
@@ -110,6 +113,7 @@ acc_lut acc_lut(
 
 branch_lut branch_lut(
     .branch_lut_en(branch_enabled),
+    .program_num(program_num),
     .key(inst[4:0]),
     .branch_pos(branch_pos)
 );
@@ -138,25 +142,30 @@ mux_3x1 reg_write_selector(
 
 
 always_ff @(posedge clk) begin
-    c <= c_in;
-
-		
- $display("inst: %b, pc: $d", inst, pc + 1);
+    $display("the num is %d", program_num);
+    $display("PC: %d, inst: %b, acc: %d, reg: %d, z: %d, c: %d, n: %d, v: %d, c_in: %d", pc, inst, acc_out, reg_out, z, c, n, v, c_in);
     if (start ) begin
         c = 0;
         z = 0;
         n = 0;
         v = 0;
         c_in = 0;
-
     end else begin
-		if (pc > 77) begin
-			$display("here");
-			done = 1;
-		end
-        
-    end
-
+        c_in = c;
+        case (program_num)
+            2'b01: begin
+                if (pc >= 79)
+                    done = 1;
+            end
+            2'b10: begin
+                if (pc >= 157)
+                    done = 1;
+            end
+            2'b11: begin
+                if (pc >= 235)
+                    done = 1;
+            end     
+        endcase
+    end  
 end
-
 endmodule

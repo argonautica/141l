@@ -30,7 +30,7 @@ logic [W-1:0] core[2**A];
 // reads are combinational
 always_comb
   if(read_enabled) begin
-    $display("Reading from memory at address %d", addr);
+//    $display("Reading from memory at address %d", addr);
     data_out = core[addr];
   end else
     data_out = 0;
@@ -43,7 +43,6 @@ always_ff @ (posedge clk)
   end 
   else if(write_enabled)
     begin
-      // $display("Writing %d to memory at address %d", data_to_write, addr);
       core[addr] <= data_to_write;
     end
 endmodule

@@ -1,5 +1,6 @@
 module alu(
   input logic optype,
+  input[10:0] pc,
   input [3:0] OP,
   input [7:0] acc_in,
   input [7:0] reg_in,
@@ -23,8 +24,6 @@ always_latch begin
     case (OP)
       4'b0010:  begin
         {c, OUT} = acc_in + reg_in + c_in;
-        if (OUT)
-          $display("debugadlskfjalksdjflkasjdflkasjflkjasdkfjsakjfkds, acc: %d, reg: %d, out: %d", acc_in, reg_in, OUT);
       end
       4'b0011: {c, OUT} = acc_in - reg_in;
       4'b0100: OUT = acc_in << reg_in;
@@ -41,19 +40,19 @@ always_latch begin
             end
           end
           if (OUT > 8) begin
-            $display("debug, acc: %d, reg: %d, out: %d", acc_in, reg_in, OUT);
           end
-          
+			 end
+      4'b1011: begin 
+        // clearflags
+        c = 0;
       end
 
     endcase
-    $display("with the operation %d, the result is %d", OP, OUT);
   end
 end
 
 always_latch begin
-  if (OP == 4'b1010)
-         begin
+  if (OP == 4'b1010) begin
 			// $display("acc, %d, reg: %d", acc_in, reg_in);
         if (acc_in > reg_in) begin
           z = 0;
@@ -67,7 +66,4 @@ always_latch begin
         end
       end
 end
-
-
-
 endmodule

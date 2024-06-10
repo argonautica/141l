@@ -22,8 +22,10 @@ BEQ 4 // TO INCREMENTJ
 RA 2 // read 2
 CMP 15 // compare to bound
 BGT 5 // GO TO INCREMENTI
+CF 0
 LOAD 1 // start of loading
 AR 3 // write to r3
+AR 13 // NEED THIS LATER
 RA 1 
 ADD 14
 AR 1
@@ -38,49 +40,95 @@ RA 2
 ADD 14
 AR 2
 LOAD 2
-AR 6 // CALC BELOW
-ACC 0
-SUB 3
+AR 6 // CALC BELOW,  NEGATE 3, 4, add to 5, 6, and if it is negative then negate 5, 6
+CF 0
+ACC 0 
+XOR 3
 AR 3
 ACC 0
-SUB 4
-AR 4 // NEGATED A
+XOR 4
+ADD 14 // add 1
+AR 4 // put back
+ACC 2 // get 0
+AR 8 // put 0 in 8
+RA 3 // get 3, add 0 if carry, put back
+ADD 8
+AR 3 // done negation
+CF 0
 RA 6
 ADD 4
 AR 6
 RA 5
 ADD 3
-AR 6 // DONE AND SET TO 5, 6
-RA 6 // cmp MIN pOSITION
-CMP 12
-BLT 9
-BGT 8
-RA 5
+AR 4 // DONE AND SET TO 4, 6, doing the absval if necessary
+ACC 2
+ADD 8 (checking carry)
+CMP 8
+BEQ 11 // if not then we go to SEQ 2
+ACC 7 // SEQ 1
+AND 13
+AR 13
+ACC 7
+AND 5
+CMP 13
+BEQ 13 // TO MSB CHECK, otherwise to INVERT
+BCH 12 // going to INV
+ACC 7 // SEQ2 before MSBCHECK
+AND 13
+AR 13 
+ACC 7
+AND 5
+CMP 13
+BEQ 13 // going to MSBCHECK
+BCH 7 // OTHERWIsE CMP
+ACC 7 // MSBCHECK POS
+AND 4
+CMP 8 (checking MSB)
+BEQ 7
+CF 0 // INVERT POS
+ACC 0
+XOR 4
+AR 4
+ACC 0
+XOR 6
+ADD 14
+AR 6
+ACC 2 // get zero for carry
+ADD 4
+AR 4
+RA 4 // cmp MIN pOSITION
 CMP 11
 BLT 9
+BGT 8
+RA 6
+CMP 12
+BLT 9
 BCH 8
-RA 6 // CMPMAX POSITION
-CMP 10
+RA 4 // CMPMAX POSITION
+CMP 9
 BGT 10
 BLT 4
-CMP 9
+RA 6
+CMP 10
 BGT 10
 BCH 4
 RA 6 // SETMIN POSITION
 AR 12
-RA 5
+RA 4
 AR 11
 BCH 8
 RA 6 // SETMAX POSITION
 AR 10
-RA 5
+RA 4
 AR 9
 BCH 4
-RA 2 // INCREMENTJ POSITION
+CF 0 // INCREMENTJ POSITION
+RA 2
 ADD 14
 AR 2
 BCH 3
-RA 1 // INCREMENTI POSITION
+CF 0 // INCREMENTI POSITION
+RA 1 
 ADD 14
 ADD 14
 AR 1
@@ -89,22 +137,22 @@ ADD 14
 AR 2
 CMP 15
 BGT 2
-BCH 3 // STORING BELOW
-ACC 6
+BCH 3 
+ACC 6 // DONE HERE
 AR 1
-ADD 11
+ADD 14
 AR 2
-ADD 11
+ADD 14
 AR 3
-ADD 11
+ADD 14
 AR 4
-ACC 10
+RA 11
 STORE 1
-ACC 9
+RA 12
 STORE 2
-ACC 12
+RA 9
 STORE 3
-ACC 11
+RA 10
 STORE 4 // DONE POSITION
 
 
